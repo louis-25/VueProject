@@ -1,21 +1,21 @@
 <template>
   <div class="menu">
     <a v-for="item in menu" :key="item">{{ item }}</a>
-  </div>
+  </div>  
 
-  <!-- <Modal :index="index" :modal="modal"/> -->
-  <Discount/>
-  
-  <div v-for="room in oneroom" :key="room">
-    <Card :product="room"/>
-  </div>
+  <Modal @closeModal="modal=false" :oneroom="oneroom" :index="index" :modal="modal"/>
+
+  <Card @openModal="modal=true; index=$event;" :product="room"
+  v-for="room in oneroom" :key="room"/>
+
+  <Discount/> 
 
 </template>
 
 <script>
 import oneroom from './assets/oneroom.js';
 import Discount from './Discount.vue';
-// import Modal from './Modal.vue';
+import Modal from './Modal.vue';
 import Card from './Card.vue'
 
 export default {
@@ -30,7 +30,7 @@ export default {
   },
   components: {
     Discount,
-    // Modal,
+    Modal,
     Card
   }
 }
@@ -75,5 +75,20 @@ div {
 .room-img {
   width: 100%;
   margin-top: 40px;
+}
+
+.black-bg { 
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    padding: 20px;
+}
+
+.white-bg {
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
 }
 </style>
