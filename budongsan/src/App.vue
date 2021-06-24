@@ -2,9 +2,11 @@
   <div class="menu">
     <a v-for="item in menu" :key="item">{{ item }}</a>
   </div>  
-
-  <Modal @closeModal="modal=false" :oneroom="oneroom" :index="index" :modal="modal"/>
-
+  
+  <transition name="fade">  
+    <Modal @closeModal="modal=false" :oneroom="oneroom" :index="index" :modal="modal"/>
+  </transition>
+  
   <Card @openModal="modal=true; index=$event;" :product="room"
   v-for="room in oneroom" :key="room"/>
 
@@ -37,6 +39,26 @@ export default {
 </script>
 
 <style>
+.fade-enter-from { /*시작*/
+  opacity: 0;
+} 
+.fade-enter-active { /*애니메이션*/
+  transition : all 0.5s
+}
+.fade-enter-to { /*끝*/
+  opacity: 1;
+} 
+
+.fade-leave-from { /*시작*/
+  opacity: 1;
+} 
+.fade-leave-active { /*애니메이션*/
+  transition : all 0.5s
+}
+.fade-leave-to { /*끝*/
+  opacity: 0;
+} 
+
 body {
   margin: 0;
 }
