@@ -2,8 +2,10 @@
 
   <div class="black-bg" v-if="modal == true">
     <div class="white-bg">
-      <h4>상세페이지임</h4>
-      <p>상세페이지 내용임</p>
+      <h4>{{oneroom[index].title}}</h4>
+      <p>{{oneroom[index].content}}</p>
+      <img :src=oneroom[index].image style="width:100%" alt="">
+      <p>가격 : {{oneroom[index].price}} 만원</p>
       <button @click="modal = false">닫기</button>
     </div>
   </div>
@@ -12,21 +14,25 @@
     <a v-for="메뉴 in 메뉴들" :key="메뉴">{{ 메뉴 }}</a>
   </div>
   
-  <div v-for="product in products" :key="product">
-    <img :src="product.image" class="room-img" alt="">    
-    <h4 @click="modal = true">{{ product.title }}</h4>
-    <p>{{ product.price }} 만원</p>
-    <button @click="product.신고수++">허위매물 신고버튼</button> <span>신고수 : {{product.신고수}}</span>
+  <div v-for="(product, i) in oneroom" :key="product">
+    <img :src="product.image" class="room-img" alt="">        
+    <h4 @click="modal = true; index = i">{{ product.title }}</h4>
+    <p>{{ product.price }} 만원</p>    
   </div>
 
 </template>
 
 <script>
 
+import oneroom from './assets/oneroom.js';
+
+
 export default {
   name: 'App',
   data(){
     return {            
+      oneroom,
+      index: 0, //클릭한 위치      
       modal : false,
       메뉴들 : ['Home', 'Shop', 'About'],
       products : [
