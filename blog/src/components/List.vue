@@ -1,17 +1,15 @@
 <template lang="">
-    <div>
-        <h5>{{title}}</h5>
-        <p>{{date}}</p>
-        <p>{{content}}</p>
+    <div v-for="blog in blogData" :key="blog">
+        <h5>{{blog.title}}</h5>
+        <p>{{blog.date}}</p>
+        <p>{{blog.content}}</p>
     </div>    
 </template>
 <script>
 export default {
     name: 'List',
     props:{
-        title : String,
-        content : String,
-        date : Number
+        blogData : Object
     }
 }
 </script>

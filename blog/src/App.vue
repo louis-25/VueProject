@@ -1,15 +1,13 @@
 <template>  
 
-  <blogHeader/>
+  <blogHeader/>  
 
-  <div v-for="blog in blogData" :key="blog">
-    <List :title="blog.title" :date="blog.date" :content="blog.content"/>
-  </div>
-
+  <router-link to="/">Home</router-link>
+  <router-link to="/list">리스트</router-link>
+  <router-view :blogData="blogData"></router-view>
 </template>
 
 <script>
-import List from './components/List.vue'
 import blogHeader from './components/Header.vue'
 import blogData from './assets/blog.js'
 
@@ -20,8 +18,7 @@ export default {
       blogData      
     }
   },
-  components: {
-    List,
+  components: {    
     blogHeader
   }
 }

@@ -6,3 +6,4 @@
         import 'bootstrap/dist/css/bootstrap.min.css' 
 
 # VueRouter
+yarn add vue-router@4 --> vue 3버전에 호환되는 vue-router
