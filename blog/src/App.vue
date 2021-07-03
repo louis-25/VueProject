@@ -1,10 +1,10 @@
 <template>  
-
-  <blogHeader/>  
-
+  <blogHeader/>
   <router-link to="/">Home</router-link>
   <router-link to="/list">리스트</router-link>
-  <router-view :blogData="blogData"></router-view>
+  <div class="mt-5">
+    <router-view :blogData="blogData"></router-view>
+  </div>
 </template>
 
 <script>
