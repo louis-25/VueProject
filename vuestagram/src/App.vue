@@ -9,14 +9,22 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container :postData="postData"/>  
+  <Container :postData="postData" :step="step" :uploadImage="uploadImage"/>  
   <button @click="more">더보기</button>
   <div class="footer">
     <ul class="footer-button-plus">
-      <input type="file" id="file" class="inputfile" />
+      <input @change="upload" type="file" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
     </ul>
   </div>
+
+  <!-- <div v-if="tabButton == 0">내용0</div>
+  <div v-if="tabButton == 1">내용1</div>
+  <div v-if="tabButton == 2">내용2</div>
+  <button @click="tabButton = 0">버튼0</button>
+  <button @click="tabButton = 1">버튼1</button>
+  <button @click="tabButton = 2">버튼2</button>   -->
+
 </template>
 
 <script>
@@ -32,7 +40,9 @@ export default {
   data() {
     return{
       postData,
-      count: 0
+      count: 0,
+      step: 0,
+      uploadImage: ""
     }
   },
   methods: {
@@ -43,6 +53,12 @@ export default {
         this.postData.push(result.data);
         this.count++;
       })
+    },
+    upload(e){
+      let file = e.target.files;
+      console.log(file[0])
+      this.uploadImage = URL.createObjectURL(file[0])
+      this.step++;
     }
   }
   
