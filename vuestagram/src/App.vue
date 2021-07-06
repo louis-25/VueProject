@@ -4,12 +4,13 @@
       <li>Cancel</li>
     </ul>
     <ul class="header-button-right">
-      <li>Next</li>
+      <li v-if="step==1" @click="step++">Next</li>
+      <li v-if="step==2" @click="publish">발행</li>
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container :postData="postData" :step="step" :uploadImage="uploadImage"/>  
+  <Container @write="작성한글 = $event" :postData="postData" :step="step" :uploadImage="uploadImage"/>  
   <button @click="more">더보기</button>
   <div class="footer">
     <ul class="footer-button-plus">
@@ -42,7 +43,8 @@ export default {
       postData,
       count: 0,
       step: 0,
-      uploadImage: ""
+      uploadImage: "",
+      작성한글 : '',
     }
   },
   methods: {
@@ -59,6 +61,20 @@ export default {
       console.log(file[0])
       this.uploadImage = URL.createObjectURL(file[0])
       this.step++;
+    },
+    publish(){
+      let data = {
+        name : 'donghyeon2',        
+        likes: 45,
+        liked: false,
+        userImage: "https://placeimg.com/100/100/arch",
+        postImage: this.uploadImage,
+        content: this.작성한글,
+        date: "May 16",
+        filter: "perpetua"
+      };
+      this.postData.unshift(data);
+      this.step = 0;
     }
   }
   
