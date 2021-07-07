@@ -10,6 +10,9 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
+  <h3>{{$store.state.name}}</h3>
+  <h3>{{$store.state.age}}</h3>
+  <button @click="$store.commit('plus')">+</button>
   <Container @write="작성한글 = $event" :postData="postData" :step="step" :uploadImage="uploadImage"/>  
   <button @click="more">더보기</button>
   <div class="footer">

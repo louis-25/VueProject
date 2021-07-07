@@ -4,7 +4,7 @@
     </div>
     <!-- 필터선택페이지 -->
     <div v-if="step == 1">
-        <div class="upload-image" :style="{ backgroundImage: `url(${uploadImage})`}"></div>
+        <div :class="selectFilter" class="upload-image" :style="{ backgroundImage: `url(${uploadImage})`}"></div>
         <div class="filters">            
             <FilterBox :filter="filter" :uploadImage="uploadImage" v-for="filter in filterList" :key="filter">
                 {{filter}}
@@ -13,7 +13,7 @@
     </div>
     <!-- 글작성페이지 -->
     <div v-if="step == 2">
-        <div class="upload-image" :style="{ backgroundImage: `url(${uploadImage})`}"></div>
+        <div :class="selectFilter" class="upload-image" :style="{ backgroundImage: `url(${uploadImage})`}"></div>
         <div class="write">
             <textarea @input="$emit('write', $event.target.value)" class="write-box">write!</textarea>
         </div>
@@ -37,9 +37,15 @@ export default {
         return{
             filterList : [ "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson", 
                     "inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua", 
-                    "reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"]
+                    "reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"],
+            selectFilter: '',
         }
-    }
+    },
+    mounted(){
+    this.emitter.on('filter', (a)=>{
+        this.selectFilter = a;        
+        })
+    },
 }
 </script>
 <style>

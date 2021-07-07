@@ -9,5 +9,7 @@ this.emitter.emit() 으로 발사하고
 this.emitter.on() 으로 수신한다
 */
 
+import store from './store.js' // vuex
+
 //createApp(App).mount('#app')
-app.mount('#app')
+app.use(store).mount('#app')
