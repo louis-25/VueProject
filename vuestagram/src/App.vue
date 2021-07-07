@@ -45,7 +45,13 @@ export default {
       step: 0,
       uploadImage: "",
       작성한글 : '',
+      filter: 'perpetua'
     }
+  },
+  mounted(){
+    this.emitter.on('filter', (a)=>{
+      this.filter = a;
+    })
   },
   methods: {
     more(){
@@ -71,7 +77,7 @@ export default {
         postImage: this.uploadImage,
         content: this.작성한글,
         date: "May 16",
-        filter: "perpetua"
+        filter: this.filter
       };
       this.postData.unshift(data);
       this.step = 0;
